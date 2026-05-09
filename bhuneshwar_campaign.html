@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>भूमेश्वर सिंह | ग्राम पंचायत बोई (हाडाबोई)</title>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #FF6B00;
+    --deep-saffron: #E85D00;
+    --green: #138808;
+    --deep-green: #0D6406;
+    --navy: #1A1A2E;
+    --gold: #FFD700;
+    --cream: #FFF8F0;
+    --white: #FFFFFF;
+    --text-dark: #1A1A2E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #FF6B00 0%, #E85D00 30%, #1A1A2E 60%, #138808 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    z-index: 0;
+  }
+
+  .ashoka-wheel {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.08);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    animation: spin 60s linear infinite;
+    z-index: 0;
+  }
+  .ashoka-wheel::before {
+    content: '';
+    position: absolute;
+    inset: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  @keyframes spin { from{transform:translate(-50%,-50%) rotate(0deg)} to{transform:translate(-50%,-50%) rotate(360deg)} }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+    width: 100%;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    animation: fadeInDown 0.8s ease;
+  }
+
+  .hero-layout {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .candidate-photo-wrap {
+    position: relative;
+    flex-shrink: 0;
+    animation: fadeInLeft 1s ease;
+  }
+
+  .photo-ring {
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    animation: pulse-ring 2s ease-in-out infinite;
+  }
+  .photo-ring-2 {
+    position: absolute;
+    inset: -24px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,215,0,0.4);
+    animation: pulse-ring 2s ease-in-out infinite 0.5s;
+  }
+
+  @keyframes pulse-ring {
+    0%,100% { opacity:1; transform:scale(1); }
+    50% { opacity:0.6; transform:scale(1.03); }
+  }
+
+  .candidate-photo {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top center;
+    border: 4px solid white;
+    position: relative;
+    z-index: 1;
+    display: block;
+  }
+
+  .sash {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, var(--saffron), var(--gold));
+    color: var(--navy);
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 4px 16px;
+    border-radius: 20px;
+    white-space: nowrap;
+    z-index: 2;
+    letter-spacing: 1px;
+  }
+
+  .hero-text { animation: fadeInRight 1s ease; }
+
+  .vote-tag {
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .hero-name {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    color: white;
+    line-height: 1.1;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .hero-name span { color: var(--gold); }
+
+  .hero-post {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: rgba(255,255,255,0.85);
+    margin: 12px 0;
+    font-weight: 400;
+  }
+
+  .hero-panchayat {
+    display: inline-block;
+    background: rgba(255,215,0,0.2);
+    border: 1px solid rgba(255,215,0,0.5);
+    color: var(--gold);
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+
+  .hero-tagline {
+    font-family: 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+    line-height: 1.7;
+    background: rgba(0,0,0,0.2);
+    padding: 16px 24px;
+    border-left: 4px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    text-align: left;
+    max-width: 480px;
+  }
+
+  .hero-cta {
+    margin-top: 28px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), #FFA500);
+    color: var(--navy);
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 8px 30px rgba(255,165,0,0.4);
+    cursor: pointer;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(255,165,0,0.5); }
+
+  .btn-secondary {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.25); transform: translateY(-3px); }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    animation: bounce 2s ease-in-out infinite;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+  .scroll-arrow { font-size: 1.5rem; display: block; color: var(--gold); }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+  /* ===== FLAG STRIPE ===== */
+  .tricolor-stripe {
+    height: 8px;
+    background: linear-gradient(90deg, #FF6B00 0%, #FF6B00 33%, white 33%, white 66%, #138808 66%, #138808 100%);
+  }
+
+  /* ===== STATS BANNER ===== */
+  .stats-banner {
+    background: var(--navy);
+    padding: 24px 20px;
+  }
+  .stats-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .stat-item {
+    text-align: center;
+    color: white;
+    animation: fadeIn 1s ease;
+  }
+  .stat-num {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    letter-spacing: 1px;
+  }
+
+  /* ===== SECTIONS ===== */
+  section { padding: 70px 20px; }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .section-tag {
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+  .section-title span { color: var(--saffron); }
+  .title-underline {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--saffron), var(--gold));
+    margin: 16px auto 0;
+    border-radius: 2px;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* ===== ABOUT ===== */
+  .about-section { background: white; }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+  }
+  .about-img-wrap { position: relative; }
+  .about-img-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.15);
+  }
+  .about-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .about-accent {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--saffron);
+    border-radius: 20px;
+    top: 15px;
+    left: 15px;
+    z-index: -1;
+  }
+  .about-badge {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: linear-gradient(135deg, var(--saffron), var(--gold));
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 800;
+    text-align: center;
+    font-size: 0.7rem;
+    line-height: 1.3;
+    box-shadow: 0 8px 24px rgba(255,107,0,0.4);
+    border: 3px solid white;
+  }
+
+  .about-content h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+  .about-content h2 span { color: var(--saffron); }
+  .about-content p {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+  }
+
+  .values-list {
+    list-style: none;
+    margin-top: 20px;
+  }
+  .values-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.9rem;
+    color: #444;
+    font-weight: 500;
+  }
+  .values-list li::before {
+    content: '✓';
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--green), #1CA810);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ===== PROMISES ===== */
+  .promises-section { background: var(--cream); }
+
+  .promises-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .promise-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+  .promise-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--saffron), var(--gold));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+  }
+  .promise-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+    border-color: rgba(255,107,0,0.2);
+  }
+  .promise-card:hover::before { transform: scaleX(1); }
+
+  .promise-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .promise-num {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: rgba(255,107,0,0.06);
+    line-height: 1;
+  }
+  .promise-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 12px;
+    font-family: 'Tiro Devanagari Hindi', serif;
+  }
+  .promise-points {
+    list-style: none;
+  }
+  .promise-points li {
+    font-size: 0.82rem;
+    color: #666;
+    padding: 5px 0;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+    font-family: 'Tiro Devanagari Hindi', serif;
+  }
+  .promise-points li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--saffron);
+    font-size: 0.75rem;
+  }
+
+  /* ===== SPECIAL PROMISES ===== */
+  .special-section {
+    background: linear-gradient(135deg, var(--navy) 0%, #16213e 50%, #0f3460 100%);
+    padding: 70px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .special-section::before {
+    content: '★';
+    position: absolute;
+    font-size: 400px;
+    opacity: 0.02;
+    top: -100px;
+    right: -100px;
+    color: white;
+  }
+  .special-section .section-title { color: white; }
+  .special-section .section-tag { color: var(--gold); }
+
+  .special-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .special-item {
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,215,0,0.2);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s;
+    text-align: center;
+  }
+  .special-item:hover {
+    background: rgba(255,215,0,0.1);
+    border-color: rgba(255,215,0,0.5);
+    transform: translateY(-5px);
+  }
+  .special-item .icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+  .special-item p {
+    color: rgba(255,255,255,0.85);
+    font-size: 0.85rem;
+    font-family: 'Tiro Devanagari Hindi', serif;
+    line-height: 1.6;
+  }
+  .special-item .highlight {
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    display: block;
+    font-family: 'Tiro Devanagari Hindi', serif;
+  }
+
+  /* ===== QUOTE ===== */
+  .quote-section {
+    background: linear-gradient(135deg, var(--saffron) 0%, var(--deep-saffron) 100%);
+    padding: 60px 20px;
+    text-align: center;
+  }
+  .quote-text {
+    font-family: 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    color: white;
+    font-style: italic;
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto 20px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+  .quote-quote { font-size: 4rem; color: rgba(255,255,255,0.3); display: block; margin-bottom: -20px; line-height: 1; }
+  .quote-author {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--navy);
+    color: white;
+    padding: 50px 20px 30px;
+    text-align: center;
+  }
+  .footer-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--gold);
+    margin-bottom: 8px;
+    font-family: 'Tiro Devanagari Hindi', serif;
+  }
+  .footer-sub {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.8rem;
+    margin-bottom: 30px;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  .footer-links a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 20px 0; }
+  .footer-copy { color: rgba(255,255,255,0.3); font-size: 0.75rem; }
+
+  .vote-appeal {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--saffron), var(--gold));
+    color: var(--navy);
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1rem;
+    margin: 20px 0;
+    font-family: 'Tiro Devanagari Hindi', serif;
+    animation: pulse-btn 2s ease-in-out infinite;
+    box-shadow: 0 8px 30px rgba(255,107,0,0.4);
+  }
+  @keyframes pulse-btn {
+    0%,100% { box-shadow: 0 8px 30px rgba(255,107,0,0.4); }
+    50% { box-shadow: 0 8px 50px rgba(255,107,0,0.7); }
+  }
+
+  /* ===== NAV ===== */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 12px 20px;
+    background: rgba(26,26,46,0.95);
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,215,0,0.2);
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+  }
+  .nav.visible { transform: translateY(0); }
+  .nav-brand {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--gold);
+    font-family: 'Tiro Devanagari Hindi', serif;
+  }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: color 0.3s;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeInLeft { from{opacity:0;transform:translateX(-30px)} to{opacity:1;transform:translateX(0)} }
+  @keyframes fadeInRight { from{opacity:0;transform:translateX(30px)} to{opacity:1;transform:translateX(0)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width: 700px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .about-img-wrap { max-width: 300px; margin: 0 auto; }
+    .hero-layout { flex-direction: column; gap: 30px; }
+    .nav-links { display: none; }
+    .hero-tagline { max-width: 100%; }
+    .hero-cta { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="navbar">
+  <div class="nav-brand">भूमेश्वर सिंह</div>
+  <div class="nav-links">
+    <a onclick="scrollToSection('about')">परिचय</a>
+    <a onclick="scrollToSection('promises')">संकल्प</a>
+    <a onclick="scrollToSection('special')">विशेष वादे</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="ashoka-wheel"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">🗳️ &nbsp; ग्राम पंचायत चुनाव 2025 &nbsp; 🗳️</div>
+
+    <div class="hero-layout">
+      <div class="candidate-photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="photo-ring-2"></div>
+        <img 
+          class="candidate-photo"
+          src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAYGBgYHBgcICAcKCwoLCg8ODAwODxYQERAREBYiFRkVFRkVIh4kHhweJB42KiYmKjY+NDI0PkxERExfWl98fKcBBgYGBgcGBwgIBwoLCgsKDw4MDA4PFhAREBEQFiIVGRUVGRUiHiQeHB4kHjYqJiYqNj40MjQ+TERETF9aX3x8p//CABEIBkAE2QMBIgACEQEDEQH/xAAwAAEBAQEBAQEAAAAAAAAAAAAAAQIDBAUGAQEBAQEBAAAAAAAAAAAAAAAAAQIDBP/aAAwDAQACEAMQAAAAC+oPN6QAAASoWgBKgtgtzSorSCoLc0qCoNSUAABAIoiiSliiSjKiLISiApC5Uxbk3eMO2JwN8+TUYmzcz3PP0sLvVjnjfir6efLDtjl1MW6Jvng9PTw6Poa8frzbqQ0sKlBSFIUiiKABaiiUJQAKIoi0iiKJVIoiiKEtIpIoiiWiTQijyiaAAABAAAKgtzSpQCoKgqK0gqC2CpSpQVIoiiKIok0XKjKwksiTUBzOmcjWcQ6c5zrPLazzc+6zHbhzO0uTtGT2+bpJe3PGyc3ns6dcekNZlzfRqOOuhfNj1k83H25rXo+d3j06zZWs6ooiiKJVIoiiVSKIoloikiiUCiKIoi0iiKIoloihKJQAFIo8YmgAAAQAAABZQAAACoKgqUoq2C2UUShRUiiKJNDKwznXNbLTJDPKQ1M012xScN9Dzu/ns5umS+D6PzrMd+HSz0+Tr5z168vQ118ehnPSz1d8dsb4uNT075ZX2OCO3PHQXXU83m9vmr1dPne+N3JelxopSKCiKIpJbAoiiWiKIoi0zaIolAsCiKIqgQohSKIoiiUPEM7AAABAAUAEUAAAAAAFlFlqlFC0RVBSKEok1DMuTnc4rXC7jy8/oca8evX506z5269PPls9TGI78uSu883E9PgZ1n0Z5jvxxg7XjizfXzaO3bw6Psc/B3zrv28faX19vlQ+rv5Hsj05x3XPbzjt5+3I8/fI69OPmPrYz0i7mV3RCiKIoKIolAsBSKJSwUiiKJQAAAAAALAUgFE8Iz0WCywAALAAChAAAAAAAFlFlLZatmhZpBQqwUiiYsXPCwubxOmpyPPnPOztx4eSztry5s9V8Wk+pr5XrXU5cj3cPPmztxuUu+NraZN4zDbFNsDeueo6+jxaX3dPHzl9ueHQ9W/MPp58nbOr7fL5z2Y82j28OAvv+V6z6jn6c3j0vM6s0qqiklUiiKIoAAAAAAKIoiiLApAAAAAAPCM9FgsAABYKAlAQAAAAAAUllFmhZa1ZS2VKWllQUi4M8OuDXPWV469A8/h+h8myY7+Oy8dcrNzl0M43mxZLGQqQszDeYIozdQltMumSOsjm2Mag3vn0rpvhJfRvxU+lz8tl7zy6PT38249HXwdl9/t+T3l+xPL6JW5UazSgAKIolEAAAAAAAAAAAAAAAAA8Iz0AWUIKlIoAABAAAAACwAWUpatlLZpGpRSygoRjfnXG5o2nE1w83gr1/Kct49HnckswrVwOmuNOkljOkrWJTKiW2LOsXM68hvPojlNQ1kMNbrlOuDm6Ea52ktjOmV305aOm+PSW9J0OnXqzfT18vol9Ln0O0zsoQAAAAAAAAAAAAAAAAAAAADwjPQCglAAAAEAAAAALAUAFFWlUtlS2UtlsWUBJ4/T8233+Tx+dPT8rXLUznfLWekwGNYGQsQ3bojNjUlDZcum45a6FN841jvTl2uTzZ6Zs1z0IKS5MtEylM6g1kXW8DqJd756PTND1er5Xtl9Pt+Z3l9Pfz9I6WVAAAAAAAAAAAAAAAAAAAAAPEM9AAAAAAAQAAAABYKAoFpVFVLZRqWllQUETyfO66rPDHzNSSTWJc5NTXEsFzqB01oxdIxdFW6lw6WM3WyXXWXny6yus6cIRk5uvCzWGbN4gTeqxO3BFlClznpDOs0stNJDXp8mT6jzdpfT9n859XN17uOJfbeXVAAAAAAAAAAAAAAAAAAAAAPEM9AAAAAAQAAAABQFAooULZoWVLZaUSgoRz6cF8Hk01PL87px3i4ubN6xkxAamovSRd65di6z1msdrcVnpqXzdemjk7Qaujjj0q5+bsTlemTHL0Yrj0mEvPUrMZs78lM5Ubg3Z0zrhvpDGd4szNyzM1EnXz9T6F+f3mvr/S+N9XN16ePWXQQAAAAAAAAAAAAAAAAAAADxDOwUAEAAAAFIoAKIoKoUFBolVFWhRRBQlTPzfXyXx/J93xt56cd43g3knFCLozsjUaXfWds66Xesak3pc66bl5NSJ11Kmqjk6yuU7YTi7LPPOmK58u/FOLXPUubo53VMc+uLM9eY9OcdM61q5lce+LOWOmbMac7FsLck+j9D4P2M6+l6fne7OvQxtAAAAAAAAAAAAAAAAAAAAPErO4oiiKJQigCUBSKqKCiVSVSVSVUUFWhUAUQDh4vV8Wvm5566Y5xbN8unIyolUVuXPfPpzrd3ca1Z3mmruXOd7jN6ZI1ow3TnesMZ65rg3hOeOsrzcPd59Z4c/Xk8fTpiwdTlz9HGuWe3NNs9Jb0tlXepeHn+hxs+dOmN41rn1MY9PAnq8lP0Ht+T686+p25dM2rEAAAAAAAAAAAAAAAAAAA8as7iqiiKAABSKIolUiiVSUFUlVJVJVJVoVBSUQBNQ+L8v1/O1McPT5N5evhbOeGTrncjFodufqmtd8due5p0l1uamtVqG5pZbYmlJaslozNwxjrK5c/RhPJx9srxO/M58u/O5w1mrjWLOd6Zlxy7Zs69vN2zrrM7jprnpfD5/p+DeOHTO9Z1Zs4b6czX2/heyX7P0fh/Yze0IAAAAAAAAAAAAAAAAAAA8ipuUACiKIoiiVSKItIolUi1JVJQUotSUBSUQAC41k/LYzjc82LNY6c7zrINsjSd46+q3l1ejOprPTG43ZuXVmpbrOxVBRqLLZRLquc0MW5THPvyMcPXzXy49HOzlz75s82evOznrpyJ056HTCXrz605bmTXHtmzzOvDWN3CuuLo4buT6P3fyf6DOvrWMgAAAAAAAAAAAAAAAAAAPMqbiiUCiKIoi0ikiiNCKJVJQUoUFQAUlEAAFJ5fT51/OeXXl6YmV1m41kiUllL9Dx/Qxrrc759OsmpW89FvSWXVli6gtmiaaBdQVIsCjM0MZ3F53WTHH08Dy3twsxw9vkE33Tw57Yrm3it9vPqPRh1l4b66PD5/o+LeOXRz1nWuKzvi5l6/V+R3l/W78vqxYsBSWUgAAAAAAAAAAAAAAAPPVm4pIoloiiKJaIoigUiqFSKCiUCgEAAAFAJ4fb8w/NcO/m64a52wuzE6chc7PV68d+XVu6zq6llvXO4tlltUtzsalLprUSxAoo520mpTOdyXM1DPPrg4c+2Tz56c7OHSaLx6U58u8PN178zO5sZmjHD3+Wz58nPry6SVO8x2XPr8nXOvr/d/LfpM3rLIWCkLAAWAAAAAAAAAAAAAgUpAAAAAAABSKIsFlIollBAUlCKBCpRNeVPznyfu/B6TMNZtQu87jfu8vqzvt359ufQqVrO4WWWlJpRYNWWrrOxc6RqWlWwUltJNwkoysVneYyqXMqMqly0JZQUqUysM8O/GvF876nzunPxc+/Hrx9Gs9Dl25bmtfV+V9fOvvrMwFShFIsALAAAAAAAAAAAAAilBAAAACiLACgAAgKgAoEoAASiUHj9mD878L7fxumeUs1mg1vn1j0+nz9cdPV24due9llmgtlihbVFUVoWUW2zNuqCxVCiy5BA0MzRcTUjMrNkslRQAUWUZ1DPHvyrzeD6fi1n5fH08O/Dr249DiSO/1/j/Umv0klwBQBCyggssKlCBUAAAAAAAAAAAAAAAFlJQigQoAEoAlAAAAAABYT8r8j3eTpng3nUhDXTn0j1d/N7efTr259cbtWWlItFWVqaC6JoLVrUurM1bGemQCqElCDTUMzcJjeZZnWZZKli4i1SKJVJLCZ3muPl9nns+T5fd5O/DpM7s546Yl6fY+J9+X7gwBQIolAAAgqCwCiLAAAAAAAAAAAAAAoQFlJQJQAAAAAAAAAC8unlPzXh/UfA3nycu3n1kK105dI9Xt8fu59e3TO8bWWLYLVFWW6mi0sms6Lc2tdOVTeucrrMUudQ6XAiC6xTbOiWQZRUjNghLJaUAAktMrKzw780+T8/6nye3J34d9ZznoOH6L87+ll+wswBQEoAAAEAAFgoIAAAAAAAAAAAABQiiUAAAAJUKAAAAAABz6Dz/K+78OvzXLeevOAduPePb9Dzezj2tXOgGpotzg63js63hLPS89PQ89O94Dvry9jdzk6MRda4j0Xh0OkkFyNOeTvMDUzDTGI7MWXbA3cU3IlAIrWdSM53mvm/F+78Pryz34d940kl5/r/zf66NwzSUAAAASiKIBYFlEogAAAAAAAAAAAAAFAAAlAJQAAAAAAAAEH5r7f5rU+XnU6Yiwery+/N+n359OPZYlsotzwrfDljePY88T0PNK9LxZT23x09V8lX29fmbl+o8XXOvVfJ0js51evbz6l9F46XUnNLrirvnGU6TGLOnLOE9efHT13w9D3b8fozrpc816sI2xpdpRLI8X5/8AS/m+vPPXlrpz1eXU+l+n+B9/FglAAAAAAQAAFBKIogAAAAFgAAALAACkAAKAAAAAAACUAAABzH579D+er4Wd46c5Cn1fl/Xxr37zrj2lAYOXm15t4uc51nvzzK3zc7NsZToxk9F81X0XhuX19fJ2zfXeVmu+/N0l9PThvOu28M7cd8kMtZt4a1izgs64vns3njiz1zyaPX08Gj62vn9c79OvKl914ds3tvnqassjH5f9V+Z6Y451jry16PP6Y+/9by+nOggAAAAAQAAFEoSiKIoiwLAsAAAAAABSFEoAlgoAAAAAAAAAAABU5fO+j8m38vnWenORK39j4/28a9tOPaTWRx6+ezz+btnWczrbOF9NPJn14PG9WLPK7yuN3BvNl6b5al9GuHSOvXl3l7dHXOjSa5cvRxOOdcd4ucLCZR5+nKsWY1msrNa51O3p8HWa+lvz+nG+fflmX6Pfx+vGtQln5j9R+V6Yxz068r6/N9CX9N1lwgUAAAAAAAACAUAJQRRKAIsAAAAAAACwoEUAAAAAlAAAAAAAB4/Zg/Ccfo+Drz5itfd+H+gxv0yuPXOdYrPDrzTzOmbFnOzpfJys9uPFiz2c/L11N55w2WVrMOuue5d9vP3zr2enn6sau5o2o5Y64Xh5fdwTx56efU1jnmzpnCypSN6ON66Yle21x231zeXTUXt7fH6s63Ylv5b9V+Y3jySuvLp935n6nN9EMgUAAAAAAQoAJQEKQqUiwWAsAAAAKlIolBLBQAAAAAAAAAAAAAAAFT4f5j97+R3Pml3nf6P4P6Hl01LOfTONw48vRys5Y6eazn5u2N5mNdbOWfseC58duK0dI7vdvOvj67c1lvvl8Xo7bl6eryerGu/Tn1lud5szNWXj5vX4jyeP1eTecRz3lnek4o1nXfPnPodPldM36m/menO/f38vozrU2lnq8/eOtzpX5v8ASfn9Y+c1vty+19/5H18asJAUAAAAABKACCoKgqAoSwFBAsCwAAAAAAAWUAAAAAAAAAAAAAAVlM/mvoeJv4T1ebpz9P3vifc57S5xuLTPH0SPHj1c9TzcvdLPB33qmp3T4uPs73n4fX69MzrjGuGtdK83TtqXGOmM2+nh6M3r25dl1myizN5eH3eOvH5/Y3j5E9bWeXt16j4XL6Xj1ny61bnf1PH9+a+H4f0fxs6nu+fqX7N4ejG3Xn1jtqalnwvvfC3n5n2fkfrenLt3jNAAAAAAAAAAAAAAILLBQAAEAAABSLAABZSUCUAJQAAAAAAAAAC+X1fOj5eeXnnX6PyPtcbjxfY+T9amaxq2WLLVxjtlOGO3OuOks3rO6Juzczmy5zyl6OXQ6dc0zLc6vfn0zenbj3EC3OpceX2edfHnvz1jOdTU1049bOfk91s+Jv6tM+jnM6ef1+nOvncfqRPme1pdd+folXWYfE+183U39z5f09c7C5BQAAAAAAAAAAAEogFAQFCAAKKiLBZQACAWUAEKAAAAAAAAAAAEvyvq/Lmvkcffc9PN6c8rPL9b5P1dZXOsaa49o2lUtOXPtk83L187PO64sytOc79q8XT3aPL27DjnaXntuVZrLp15d1QCiY65l83L1crOGPTnefLO3Gzc406JuV0z0l3757lFjOtUvTHRJnfMeT1ee2+/4n3LnY3yBQAAAAAAAAAAAAABCoLKIABYqkiwFAACAAoAECgAAAAAAAAABL8r6vyprhbc9J4vfk+N9X5X1d4tmsaVYvTO1s0jOeiuE7Q889Ns8++1Od62ud6Ezx7cpeed5lWjG50l30x0LKqaiCwzy7YXDcTjj05s8XD6OK+dfbg49LtXbXSM63mGs9C2VGNZWfI+v8Br3fc+D97WKN8QUAAAAAAAAAAQqCgASwFIUiiAAKIsAFlAIBYKACUAAAAAAAAAAAS/M+n82b5zeMbplfm+zh23jWpc3Ws7l1qUtlAFujGrLEsKZN5yWY3IxATQmmo6bzugJNZlqUZ3Dm0MaCZ2rnOsObpo561Ii0m5TQTOdZXn8L7vxG/b974P3tc6N8QUAAAAAAAAAAAAAgoJYKgqAsAAKlEoAASwAoEBQAAAAAAAAAABL4Pf4ZrjjpjHSY6cjyd+HfWd6zZdbxo3rGpdJotzoqqixBSTQzOmFzz3yhFLZS7z0Luao1lJNJcrJVwNzNJKJVqLTLUBYFM6qxneYzLlb8P7nxpr0fc+T9jfODfIFAAAAAAAAAAAAECiKIACoAAAFgoAAEsAKAAAAAAAAAAAAAC+T18Dzcumcdbw9PnODeLN6zqNXOjWs2XW8aNUoUmpUVmrvGDpxnGWZ59o3boy1CdMdDe8bsudQglS5lzNQnLr5ztrz961rGgEtlCiUChm5ic9+dd+L0Ymvb7ePbrwgsAAAAAAAAAAAEKCKJQQAAAAFgqBZQAQoEolQoAAAAAAAAAAAAAFlT5jv5c9e3Dv55eeN4ud2VdaxY6RqXWs6NXKtXI0wTTOTXNxW8LB6eHoNaliywnTGzXbl21m4ZEtzrM1mWLox5fZ5a4ejxd09O+WzbNNWF0lSpQQZslz4/Z89e2nY9tOvAAAAAAAAAAAAAAABKEsALAsAKKiKJQEKABLACgASgAAAAAAAAAAAEfG+14JrlPN6s9OPH0ee56JpbZY1rGpelxo0yNIKzDWc86vG8TXVtOfbhwPoa+ZD6d8HU9evJ0X03z07uA9G/LqX1ThmTvfHhfd5Hlrl24LPb18/aOtxV3caOlxpNJRLCS5lnzfpfPX1+nj67nazpxBQAAAAAAAAAAAAAEolBALAsAoWEsFBKIsKBLACgEKgoAAAAAAAAAAALjVT4u+vDPR594rpc6jVzZdXKXprls0zSpAksnO8jHXHpG5Ez8f7HxtPPy6c9516PL0j39vm3Ovsa+Z1l998Gj3PLmX0+Gc7PPvU1PXjj1zfbjtTl38veO++OpeuuW16a5ajsxpNSCZsXPPple3r59OnGC5BQAAAAAAAAAAABCgEKCLCgligipaCAJQAASwAoEoigAAAAAAAAAAABYTHzPrfMm+HLv513YjVzZdIjV56XbI1JBi4szNq3eXkufVjw3Wfb4uKznw9ObODXKu2/NqX09fH1l9u/Bzzr6T5cs+j5PO1nrvhT0+n5/WX7XTxsa9ON4l9GuWpet5al6746XtvluNyAgz15e3WdyzfIFAAAAAAAAAAAAAAlAAACWAohallAJSJYKAACAoEsABQQoAAACUAAAAABJ8z6XzJvPm9fkXaUojSM1rNKgsSsTeRyvk1nv5uXPeNays8+wnSdTz8+izlO1Xh1al58+2DmXWY1oxenSOHSxfT18W5fodPB6M319PP3xu6zZre+PSOvTluXVzS2DXt8nr6coLAAAAAAAAAAAAAAAAJQACkIAqWoWAAEsKlAAIBZQgAAWCpQAQqUAAAAAAAfK+t4l8nmkmt6zS3KNM2W2DSWIKmN+CzPLPPpzzcyzrXWWXv1zrz79Ol+fx+hws8nfv9BflY+5nN/Pvuj4OfvcLPk32Wzxz1jyY9XPWeemTpvjT3+j5fvxv0F56alXpvG1us6ioO3q8/p6coLAAAAAAAAAAAAAAAAAAoCUgAKlSFlAAEoAEAFlECpSKEUiiKEoAAAAAAAAWE5fO+v8ANXwM6mqllA1rNjUlUo5fJ9/zunPOZdZs1hfT282s69ufGmvVPIPVfLT1dfFV+p6PidY+rw8POX18eOqrllPTvx6PV57zuefOt4b507+vx95fpGuPWaaGlW6zYtas9e7OnIAAAAAAAAAAAAAAAAAAKCAAAIoAASgQoAICpRLAollAAAAAAAAAAAAAL4/ZwT4dibtg0WWalGs2Naxo8fg+n8vpji131PM+x0zfjdPpRrxdfVqa4deml53ptfO9WDx8foQ+fv26jxvbT5fl/Qw/Nz7niufn49WdY8fX0Vni6ZrXXh3l+tqb5dZVioLqVdejz+u57yzfIFAAAAAAAAAAAAAAAACgAAgQAAoAoIAAAgFlEoiwUAAAAAAAAAAAAALnVT807cWrrFl2xqVrNM9Oejpc6PP876vk1nz/AEufU1qaxrOekXDorm2XO82ukwNSQVmXWpTonSPPz9Q8T1c7nhjus8vn+hyufmenXSvoaxeXS0JZo0lNfQ8H0dYg1gAAFAAAAAAAAAAAAAAACggABApKpIoEsFlAAEsFiqlggoCUAAAAAAAAAAAAWVPk/P8A" alt="भूमेश्वर सिंह" 
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div style="display:none; width:220px; height:220px; border-radius:50%; background:linear-gradient(135deg,#FF6B00,#1A1A2E); border:4px solid white; align-items:center; justify-content:center; flex-direction:column; color:white; font-size:3rem; font-weight:700;">भ</div>
+        <div class="sash">प्रधान पद प्रत्याशी</div>
+      </div>
+
+      <div class="hero-text">
+        <div class="vote-tag">आपका वोट • आपका अधिकार</div>
+        <h1 class="hero-name">
+          <span>भूमेश्वर</span><br>सिंह
+        </h1>
+        <p class="hero-post">प्रधान पद प्रत्याशी</p>
+        <div class="hero-panchayat">🏡 ग्राम पंचायत बोई (हाडाबोई)</div>
+        <blockquote class="hero-tagline">
+          "हर खेत में पानी, हर घर को काम —<br>यही है हमारा पंचायत अभियान।"
+        </blockquote>
+        <div class="hero-cta">
+          <a class="btn-primary" onclick="scrollToSection('promises')">संकल्प पत्र देखें ▼</a>
+          <a class="btn-secondary" onclick="scrollToSection('about')">परिचय जानें</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span class="scroll-arrow">↓</span>
+    नीचे स्क्रॉल करें
+  </div>
+</section>
+
+<!-- TRICOLOR STRIPE -->
+<div class="tricolor-stripe"></div>
+
+<!-- STATS -->
+<div class="stats-banner">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-num">10</span>
+      <span class="stat-label">प्रमुख संकल्प</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">ईमानदारी की प्रतिज्ञा</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">1</span>
+      <span class="stat-label">लक्ष्य — विकास</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">∞</span>
+      <span class="stat-label">आपका भरोसा</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap">
+        <div class="about-img-frame">
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAYGBgYHBgcICAcKCwoLCg8ODAwODxYQERAREBYiFRkVFRkVIh4kHhweJB42KiYmKjY+NDI0PkxERExfWl98fKcBBgYGBgcGBwgIBwoLCgsKDw4MDA4PFhAREBEQFiIVGRUVGRUiHiQeHB4kHjYqJiYqNj40MjQ+TERETF9aX3x8p//CABEIBkAE2QMBIgACEQEDEQH/xAAwAAEBAQEBAQEAAAAAAAAAAAAAAQIDBAUGAQEBAQEBAAAAAAAAAAAAAAAAAQIDBP/aAAwDAQACEAMQAAAAC+oPN6QAAASoWgBKgtgtzSorSCoLc0qCoNSUAABAIoiiSliiSjKiLISiApC5Uxbk3eMO2JwN8+TUYmzcz3PP0sLvVjnjfir6efLDtjl1MW6Jvng9PTw6Poa8frzbqQ0sKlBSFIUiiKABaiiUJQAKIoi0iiKJVIoiiKEtIpIoiiWiTQijyiaAAABAAAKgtzSpQCoKgqK0gqC2CpSpQVIoiiKIok0XKjKwksiTUBzOmcjWcQ6c5zrPLazzc+6zHbhzO0uTtGT2+bpJe3PGyc3ns6dcekNZlzfRqOOuhfNj1k83H25rXo+d3j06zZWs6ooiiKJVIoiiVSKIoloikiiUCiKIoi0iiKIoloihKJQAFIo8YmgAAAQAAABZQAAACoKgqUoq2C2UUShRUiiKJNDKwznXNbLTJDPKQ1M012xScN9Dzu/ns5umS+D6PzrMd+HSz0+Tr5z168vQ118ehnPSz1d8dsb4uNT075ZX2OCO3PHQXXU83m9vmr1dPne+N3JelxopSKCiKIpJbAoiiWiKIoi0zaIolAsCiKIqgQohSKIoiiUPEM7AAABAAUAEUAAAAAAFlFlqlFC0RVBSKEok1DMuTnc4rXC7jy8/oca8evX506z5269PPls9TGI78uSu883E9PgZ1n0Z5jvxxg7XjizfXzaO3bw6Psc/B3zrv28faX19vlQ+rv5Hsj05x3XPbzjt5+3I8/fI69OPmPrYz0i7mV3RCiKIoKIolAsBSKJSwUiiKJQAAAAAALAUgFE8Iz0WCywAALAAChAAAAAAAFlFlLZatmhZpBQqwUiiYsXPCwubxOmpyPPnPOztx4eSztry5s9V8Wk+pr5XrXU5cj3cPPmztxuUu+NraZN4zDbFNsDeueo6+jxaX3dPHzl9ueHQ9W/MPp58nbOr7fL5z2Y82j28OAvv+V6z6jn6c3j0vM6s0qqiklUiiKIoAAAAAAKIoiiLApAAAAAAPCM9FgsAABYKAlAQAAAAAAUllFmhZa1ZS2VKWllQUi4M8OuDXPWV469A8/h+h8myY7+Oy8dcrNzl0M43mxZLGQqQszDeYIozdQltMumSOsjm2Mag3vn0rpvhJfRvxU+lz8tl7zy6PT38249HXwdl9/t+T3l+xPL6JW5UazSgAKIolEAAAAAAAAAAAAAAAAA8Iz0AWUIKlIoAABAAAAACwAWUpatlLZpGpRSygoRjfnXG5o2nE1w83gr1/Kct49HnckswrVwOmuNOkljOkrWJTKiW2LOsXM68hvPojlNQ1kMNbrlOuDm6Ea52ktjOmV305aOm+PSW9J0OnXqzfT18vol9Ln0O0zsoQAAAAAAAAAAAAAAAAAAAADwjPQCglAAAAEAAAAALAUAFFWlUtlS2UtlsWUBJ4/T8233+Tx+dPT8rXLUznfLWekwGNYGQsQ3bojNjUlDZcum45a6FN841jvTl2uTzZ6Zs1z0IKS5MtEylM6g1kXW8DqJd756PTND1er5Xtl9Pt+Z3l9Pfz9I6WVAAAAAAAAAAAAAAAAAAAAAPEM9AAAAAAAQAAAABYKAoFpVFVLZRqWllQUETyfO66rPDHzNSSTWJc5NTXEsFzqB01oxdIxdFW6lw6WM3WyXXWXny6yus6cIRk5uvCzWGbN4gTeqxO3BFlClznpDOs0stNJDXp8mT6jzdpfT9n859XN17uOJfbeXVAAAAAAAAAAAAAAAAAAAAAPEM9AAAAAAQAAAABQFAooULZoWVLZaUSgoRz6cF8Hk01PL87px3i4ubN6xkxAamovSRd65di6z1msdrcVnpqXzdemjk7Qaujjj0q5+bsTlemTHL0Yrj0mEvPUrMZs78lM5Ubg3Z0zrhvpDGd4szNyzM1EnXz9T6F+f3mvr/S+N9XN16ePWXQQAAAAAAAAAAAAAAAAAAADxDOwUAEAAAAFIoAKIoKoUFBolVFWhRRBQlTPzfXyXx/J93xt56cd43g3knFCLozsjUaXfWds66Xesak3pc66bl5NSJ11Kmqjk6yuU7YTi7LPPOmK58u/FOLXPUubo53VMc+uLM9eY9OcdM61q5lce+LOWOmbMac7FsLck+j9D4P2M6+l6fne7OvQxtAAAAAAAAAAAAAAAAAAAAPErO4oiiKJQigCUBSKqKCiVSVSVSVUUFWhUAUQDh4vV8Wvm5566Y5xbN8unIyolUVuXPfPpzrd3ca1Z3mmruXOd7jN6ZI1ow3TnesMZ65rg3hOeOsrzcPd59Z4c/Xk8fTpiwdTlz9HGuWe3NNs9Jb0tlXepeHn+hxs+dOmN41rn1MY9PAnq8lP0Ht+T686+p25dM2rEAAAAAAAAAAAAAAAAAAA8as7iqiiKAABSKIolUiiVSUFUlVJVJVJVoVBSUQBNQ+L8v1/O1McPT5N5evhbOeGTrncjFodufqmtd8due5p0l1uamtVqG5pZbYmlJaslozNwxjrK5c/RhPJx9srxO/M58u/O5w1mrjWLOd6Zlxy7Zs69vN2zrrM7jprnpfD5/p+DeOHTO9Z1Zs4b6czX2/heyX7P0fh/Yze0IAAAAAAAAAAAAAAAAAAA8ipuUACiKIoiiVSKItIolUi1JVJQUotSUBSUQAC41k/LYzjc82LNY6c7zrINsjSd46+q3l1ejOprPTG43ZuXVmpbrOxVBRqLLZRLquc0MW5THPvyMcPXzXy49HOzlz75s82evOznrpyJ056HTCXrz605bmTXHtmzzOvDWN3CuuLo4buT6P3fyf6DOvrWMgAAAAAAAAAAAAAAAAAAPMqbiiUCiKIoi0ikiiNCKJVJQUoUFQAUlEAAFJ5fT51/OeXXl6YmV1m41kiUllL9Dx/Qxrrc759OsmpW89FvSWXVli6gtmiaaBdQVIsCjM0MZ3F53WTHH08Dy3twsxw9vkE33Tw57Yrm3it9vPqPRh1l4b66PD5/o+LeOXRz1nWuKzvi5l6/V+R3l/W78vqxYsBSWUgAAAAAAAAAAAAAAAPPVm4pIoloiiKJaIoigUiqFSKCiUCgEAAAFAJ4fb8w/NcO/m64a52wuzE6chc7PV68d+XVu6zq6llvXO4tlltUtzsalLprUSxAoo520mpTOdyXM1DPPrg4c+2Tz56c7OHSaLx6U58u8PN178zO5sZmjHD3+Wz58nPry6SVO8x2XPr8nXOvr/d/LfpM3rLIWCkLAAWAAAAAAAAAAAAAgUpAAAAAAABSKIsFlIollBAUlCKBCpRNeVPznyfu/B6TMNZtQu87jfu8vqzvt359ufQqVrO4WWWlJpRYNWWrrOxc6RqWlWwUltJNwkoysVneYyqXMqMqly0JZQUqUysM8O/GvF876nzunPxc+/Hrx9Gs9Dl25bmtfV+V9fOvvrMwFShFIsALAAAAAAAAAAAAAilBAAAACiLACgAAgKgAoEoAASiUHj9mD878L7fxumeUs1mg1vn1j0+nz9cdPV24due9llmgtlihbVFUVoWUW2zNuqCxVCiy5BA0MzRcTUjMrNkslRQAUWUZ1DPHvyrzeD6fi1n5fH08O/Dr249DiSO/1/j/Umv0klwBQBCyggssKlCBUAAAAAAAAAAAAAAAFlJQigQoAEoAlAAAAAABYT8r8j3eTpng3nUhDXTn0j1d/N7efTr259cbtWWlItFWVqaC6JoLVrUurM1bGemQCqElCDTUMzcJjeZZnWZZKli4i1SKJVJLCZ3muPl9nns+T5fd5O/DpM7s546Yl6fY+J9+X7gwBQIolAAAgqCwCiLAAAAAAAAAAAAAAoQFlJQJQAAAAAAAAAC8unlPzXh/UfA3nycu3n1kK105dI9Xt8fu59e3TO8bWWLYLVFWW6mi0sms6Lc2tdOVTeucrrMUudQ6XAiC6xTbOiWQZRUjNghLJaUAAktMrKzw780+T8/6nye3J34d9ZznoOH6L87+ll+wswBQEoAAAEAAFgoIAAAAAAAAAAAABQiiUAAAAJUKAAAAAABz6Dz/K+78OvzXLeevOAduPePb9Dzezj2tXOgGpotzg63js63hLPS89PQ89O94Dvry9jdzk6MRda4j0Xh0OkkFyNOeTvMDUzDTGI7MWXbA3cU3IlAIrWdSM53mvm/F+78Pryz34d940kl5/r/zf66NwzSUAAAASiKIBYFlEogAAAAAAAAAAAAAFAAAlAJQAAAAAAAAEH5r7f5rU+XnU6Yiwery+/N+n359OPZYlsotzwrfDljePY88T0PNK9LxZT23x09V8lX29fmbl+o8XXOvVfJ0js51evbz6l9F46XUnNLrirvnGU6TGLOnLOE9efHT13w9D3b8fozrpc816sI2xpdpRLI8X5/8AS/m+vPPXlrpz1eXU+l+n+B9/FglAAAAAAQAAFBKIogAAAAFgAAALAACkAAKAAAAAAACUAAABzH579D+er4Wd46c5Cn1fl/Xxr37zrj2lAYOXm15t4uc51nvzzK3zc7NsZToxk9F81X0XhuX19fJ2zfXeVmu+/N0l9PThvOu28M7cd8kMtZt4a1izgs64vns3njiz1zyaPX08Gj62vn9c79OvKl914ds3tvnqassjH5f9V+Z6Y451jry16PP6Y+/9by+nOggAAAAAQAAFEoSiKIoiwLAsAAAAAABSFEoAlgoAAAAAAAAAAABU5fO+j8m38vnWenORK39j4/28a9tOPaTWRx6+ezz+btnWczrbOF9NPJn14PG9WLPK7yuN3BvNl6b5al9GuHSOvXl3l7dHXOjSa5cvRxOOdcd4ucLCZR5+nKsWY1msrNa51O3p8HWa+lvz+nG+fflmX6Pfx+vGtQln5j9R+V6Yxz068r6/N9CX9N1lwgUAAAAAAAACAUAJQRRKAIsAAAAAAACwoEUAAAAAlAAAAAAAB4/Zg/Ccfo+Drz5itfd+H+gxv0yuPXOdYrPDrzTzOmbFnOzpfJys9uPFiz2c/L11N55w2WVrMOuue5d9vP3zr2enn6sau5o2o5Y64Xh5fdwTx56efU1jnmzpnCypSN6ON66Yle21x231zeXTUXt7fH6s63Ylv5b9V+Y3jySuvLp935n6nN9EMgUAAAAAAQoAJQEKQqUiwWAsAAAAKlIolBLBQAAAAAAAAAAAAAAAFT4f5j97+R3Pml3nf6P4P6Hl01LOfTONw48vRys5Y6eazn5u2N5mNdbOWfseC58duK0dI7vdvOvj67c1lvvl8Xo7bl6eryerGu/Tn1lud5szNWXj5vX4jyeP1eTecRz3lnek4o1nXfPnPodPldM36m/menO/f38vozrU2lnq8/eOtzpX5v8ASfn9Y+c1vty+19/5H18asJAUAAAAABKACCoKgqAoSwFBAsCwAAAAAAAWUAAAAAAAAAAAAAAVlM/mvoeJv4T1ebpz9P3vifc57S5xuLTPH0SPHj1c9TzcvdLPB33qmp3T4uPs73n4fX69MzrjGuGtdK83TtqXGOmM2+nh6M3r25dl1myizN5eH3eOvH5/Y3j5E9bWeXt16j4XL6Xj1ny61bnf1PH9+a+H4f0fxs6nu+fqX7N4ejG3Xn1jtqalnwvvfC3n5n2fkfrenLt3jNAAAAAAAAAAAAAAILLBQAAEAAABSLAABZSUCUAJQAAAAAAAAAC+X1fOj5eeXnnX6PyPtcbjxfY+T9amaxq2WLLVxjtlOGO3OuOks3rO6Juzczmy5zyl6OXQ6dc0zLc6vfn0zenbj3EC3OpceX2edfHnvz1jOdTU1049bOfk91s+Jv6tM+jnM6ef1+nOvncfqRPme1pdd+folXWYfE+183U39z5f09c7C5BQAAAAAAAAAAAEogFAQFCAAKKiLBZQACAWUAEKAAAAAAAAAAAEvyvq/Lmvkcffc9PN6c8rPL9b5P1dZXOsaa49o2lUtOXPtk83L187PO64sytOc79q8XT3aPL27DjnaXntuVZrLp15d1QCiY65l83L1crOGPTnefLO3Gzc406JuV0z0l3757lFjOtUvTHRJnfMeT1ee2+/4n3LnY3yBQAAAAAAAAAAAAABCoLKIABYqkiwFAACAAoAECgAAAAAAAAABL8r6vyprhbc9J4vfk+N9X5X1d4tmsaVYvTO1s0jOeiuE7Q889Ns8++1Od62ud6Ezx7cpeed5lWjG50l30x0LKqaiCwzy7YXDcTjj05s8XD6OK+dfbg49LtXbXSM63mGs9C2VGNZWfI+v8Br3fc+D97WKN8QUAAAAAAAAAAQqCgASwFIUiiAAKIsAFlAIBYKACUAAAAAAAAAAAS/M+n82b5zeMbplfm+zh23jWpc3Ws7l1qUtlAFujGrLEsKZN5yWY3IxATQmmo6bzugJNZlqUZ3Dm0MaCZ2rnOsObpo561Ii0m5TQTOdZXn8L7vxG/b974P3tc6N8QUAAAAAAAAAAAAAgoJYKgqAsAAKlEoAASwAoEBQAAAAAAAAAABL4Pf4ZrjjpjHSY6cjyd+HfWd6zZdbxo3rGpdJotzoqqixBSTQzOmFzz3yhFLZS7z0Luao1lJNJcrJVwNzNJKJVqLTLUBYFM6qxneYzLlb8P7nxpr0fc+T9jfODfIFAAAAAAAAAAAAECiKIACoAAAFgoAAEsAKAAAAAAAAAAAAAC+T18Dzcumcdbw9PnODeLN6zqNXOjWs2XW8aNUoUmpUVmrvGDpxnGWZ59o3boy1CdMdDe8bsudQglS5lzNQnLr5ztrz961rGgEtlCiUChm5ic9+dd+L0Ymvb7ePbrwgsAAAAAAAAAAAEKCKJQQAAAAFgqBZQAQoEolQoAAAAAAAAAAAAAFlT5jv5c9e3Dv55eeN4ud2VdaxY6RqXWs6NXKtXI0wTTOTXNxW8LB6eHoNaliywnTGzXbl21m4ZEtzrM1mWLox5fZ5a4ejxd09O+WzbNNWF0lSpQQZslz4/Z89e2nY9tOvAAAAAAAAAAAAAAABKEsALAsAKKiKJQEKABLACgASgAAAAAAAAAAAEfG+14JrlPN6s9OPH0ee56JpbZY1rGpelxo0yNIKzDWc86vG8TXVtOfbhwPoa+ZD6d8HU9evJ0X03z07uA9G/LqX1ThmTvfHhfd5Hlrl24LPb18/aOtxV3caOlxpNJRLCS5lnzfpfPX1+nj67mazpxBQAAAAAAAAAAAAAEolBALAsAoWEsFBKIsKBLACgEKgoAAAAAAAAAAALjVT4u+vDPR594rpc6jVzZdXKXprls0zSpAksnO8jHXHpG5Ez8f7HxtPPy6c9516PL0j39vm3Ovsa+Z1l998Gj3PLmX0+Gc7PPvU1PXjj1zfbjtTl38veO++OpeuuW16a5ajsxpNSCZsXPPple3r59OnGC5BQAAAAAAAAAAABCgEKCLCgligipaCAJQAASwAoEoigAAAAAAAAAAABYTHzPrfMm+HLv513YjVzZdIjV56XbI1JBi4szNq3eXkufVjw3Wfb4uKznw9ObODXKu2/NqX09fH1l9u/Bzzr6T5cs+j5PO1nrvhT0+n5/WX7XTxsa9ON4l9GuWpet5al6746XtvluNyAgz15e3WdyzfIFAAAAAAAAAAAAAAlAAACWAohallAJSJYKAACAoEsABQQoAAACUAAAAABJ8z6XzJvPm9fkXaUojSM1rNKgsSsTeRyvk1nv5uXPeNays8+wnSdTz8+izlO1Xh1al58+2DmXWY1oxenSOHSxfT18W5fodPB6M319PP3xu6zZre+PSOvTluXVzS2DXt8nr6coLAAAAAAAAAAAAAAAAJQACkIAqWoWAAEsKlAAIBZQgAAWCpQAQqUAAAAAAAfK+t4l8nmkmt6zS3KNM2W2DSWIKmN+CzPLPPpzzcyzrXWWXv1zrz79Ol+fx+hws8nfv9BflY+5nN/Pvuj4OfvcLPk32Wzxz1jyY9XPWeemTpvjT3+j5fvxv0F56alXpvG1us6ioO3q8/p6coLAAAAAAAAAAAAAAAAAAoCUgAKlSFlAAEoAEAFlECpSKEUiiKEoAAAAAAAAWE5fO+v8ANXwM6mqllA1rNjUlUo5fJ9/zunPOZdZs1hfT282s69ufGmvVPIPVfLT1dfFV+p6PidY+rw8POX18eOqrllPTvx6PV57zuefOt4b507+vx95fpGuPWaaGlW6zYtas9e7OnIAAAAAAAAAAAAAAAAAAKCAAAIoAASgQoAICpRLAollAAAAAAAAAAAAAL4/ZwT4dibtg0WWalGs2Naxo8fg+n8vpji131PM+x0zfjdPpRrxdfVqa4deml53ptfO9WDx8foQ+fv26jxvbT5fl/Qw/Nz7niufn49WdY8fX0Vni6ZrXXh3l+tqb5dZVioLqVdejz+u57yzfIFAAAAAAAAAAAAAAAACgAAgQAAoAoIAAAgFlEoiwUAAAAAAAAAAAAALnVT807cWrrFl2xqVrNM9Oejpc6PP876vk1nz/AEufU1qaxrOekXDorm2XO82ukwNSQVmXWpTonSPPz9Q8T1c7nhjus8vn+hyufmenXSvoaxeXS0JZo0lNfQ8H0dYg1gAAFAAAAAAAAAAAAAAACggABApKpIoEsFlAAEsFiqlggoCUAAAAAAAAAAAAWVPk/P8A" alt="भूमेश्वर सिंह"
+            onerror="this.style.background='linear-gradient(180deg, #FF6B00 30%, #1A1A2E)'; this.style.display='block'; this.removeAttribute('src');"
+            style="width:100%; height:100%; object-fit:cover; object-position:top center;"
+          />
+        </div>
+        <div class="about-accent"></div>
+        <div class="about-badge">
+          <span>आपका</span>
+          <span>अपना</span>
+          <span>बेटा</span>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <h2>आपका <span>विश्वसनीय</span> प्रतिनिधि</h2>
+        <p>
+          मैं <strong>भूमेश्वर सिंह</strong>, आपकी ग्राम पंचायत बोई (हाडाबोई) का अपना बेटा हूं। 
+          मैंने इस गांव की मिट्टी में जन्म लिया, इसकी खुशियों और तकलीफों को करीब से देखा है।
+        </p>
+        <p>
+          आज मैं प्रधान पद का उम्मीदवार बनकर यह प्रतिज्ञा लेता हूं कि 
+          <strong>ईमानदारी, पारदर्शिता और विकास</strong> ही मेरे तीन स्तंभ होंगे।
+        </p>
+        <ul class="values-list">
+          <li>ईमानदार एवं पारदर्शी प्रशासन</li>
+          <li>हर परिवार तक सरकारी योजनाओं का लाभ</li>
+          <li>बिना भेदभाव के सबकी सेवा</li>
+          <li>डिजिटल एवं आधुनिक पंचायत</li>
+          <li>भ्रष्टाचार मुक्त शासन</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRICOLOR -->
+<div class="tricolor-stripe"></div>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <div class="container">
+    <span class="quote-quote">"</span>
+    <p class="quote-text">आपका एक वोट, गाँव के उज्ज्वल भविष्य के नाम</p>
+    <div class="quote-author">— भूमेश्वर सिंह</div>
+  </div>
+</div>
+
+<!-- PROMISES -->
+<section class="promises-section" id="promises">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">हमारे वादे</div>
+      <h2 class="section-title">10 <span>प्रमुख संकल्प</span></h2>
+      <div class="title-underline"></div>
+    </div>
+
+    <div class="promises-grid">
+
+      <!-- 1 -->
+      <div class="promise-card">
+        <span class="promise-icon">🌾</span>
+        <span class="promise-num">01</span>
+        <h3>किसानों के हित में कार्य</h3>
+        <ul class="promise-points">
+          <li>सिंचाई सुविधा मजबूत करना</li>
+          <li>हर गांव में बोरवेल निर्माण</li>
+          <li>मिट्टी परीक्षण व उत्तम बीज</li>
+          <li>कृषि प्रशिक्षण कार्यक्रम</li>
+          <li>ग्रीन हाउस — फूल व सब्जी उत्पादन</li>
+          <li>पावर टिलर, चारा काटने की मशीनें</li>
+        </ul>
+      </div>
+
+      <!-- 2 -->
+      <div class="promise-card">
+        <span class="promise-icon">💼</span>
+        <span class="promise-num">02</span>
+        <h3>हर घर रोजगार योजना</h3>
+        <ul class="promise-points">
+          <li>मनरेगा के तहत नियमित रोजगार</li>
+          <li>डेयरी, पोल्ट्री, हॉर्टिकल्चर</li>
+          <li>स्वरोजगार एवं स्थानीय उद्योग</li>
+          <li>बकरी शेड, मुर्गी शेड निर्माण</li>
+          <li>ग्रामीण बैंक शाखा</li>
+        </ul>
+      </div>
+
+      <!-- 3 -->
+      <div class="promise-card">
+        <span class="promise-icon">🛣️</span>
+        <span class="promise-num">03</span>
+        <h3>सड़क और नाली व्यवस्था</h3>
+        <ul class="promise-points">
+          <li>लिंक सड़कों को पक्का और चौड़ा</li>
+          <li>इंटरलॉक टाइल से घर जोड़ना</li>
+          <li>स्कूल, अस्पताल, मंदिर तक सुविधा</li>
+          <li>सार्वजनिक स्थानों का सौंदर्यीकरण</li>
+        </ul>
+      </div>
+
+      <!-- 4 -->
+      <div class="promise-card">
+        <span class="promise-icon">🏡</span>
+        <span class="promise-num">04</span>
+        <h3>स्वच्छ और सुरक्षित गांव</h3>
+        <ul class="promise-points">
+          <li>हर घर को कूड़ेदान</li>
+          <li>सोक पीट निर्माण</li>
+          <li>सार्वजनिक एवं व्यक्तिगत शौचालय</li>
+          <li>प्रत्येक गांव में सोलर लाइट</li>
+          <li>हरित पंचायत — सोलर प्लांट</li>
+        </ul>
+      </div>
+
+      <!-- 5 -->
+      <div class="promise-card">
+        <span class="promise-icon">💧</span>
+        <span class="promise-num">05</span>
+        <h3>पेयजल एवं पर्यावरण</h3>
+        <ul class="promise-points">
+          <li>हर घर तक स्वच्छ पेयजल</li>
+          <li>जल संरक्षण कार्य</li>
+          <li>पौधारोपण अभियान</li>
+          <li>वर्मी कम्पोस्ट पिट</li>
+        </ul>
+      </div>
+
+      <!-- 6 -->
+      <div class="promise-card">
+        <span class="promise-icon">🏆</span>
+        <span class="promise-num">06</span>
+        <h3>युवाओं और खेल को बढ़ावा</h3>
+        <ul class="promise-points">
+          <li>खेल मैदान और खेल सामग्री</li>
+          <li>प्रतियोगी परीक्षाओं का मार्गदर्शन</li>
+          <li>रोजगार और कौशल प्रशिक्षण शिविर</li>
+        </ul>
+      </div>
+
+      <!-- 7 -->
+      <div class="promise-card">
+        <span class="promise-icon">👩</span>
+        <span class="promise-num">07</span>
+        <h3>महिलाओं का सम्मान</h3>
+        <ul class="promise-points">
+          <li>महिला स्वयं सहायता समूह</li>
+          <li>सिलाई, कढ़ाई, स्वरोजगार प्रशिक्षण</li>
+          <li>खाद्य संस्करण — उचित मूल्य</li>
+        </ul>
+      </div>
+
+      <!-- 8 -->
+      <div class="promise-card">
+        <span class="promise-icon">📚</span>
+        <span class="promise-num">08</span>
+        <h3>शिक्षा और स्वास्थ्य</h3>
+        <ul class="promise-points">
+          <li>स्कूलों की बुनियादी सुविधाओं में सुधार</li>
+          <li>आंगनवाड़ी और स्वास्थ्य केंद्र सुदृढ़</li>
+          <li>नियमित स्वास्थ्य शिविर</li>
+          <li>डिजिटल लाइब्रेरी</li>
+        </ul>
+      </div>
+
+      <!-- 9 -->
+      <div class="promise-card">
+        <span class="promise-icon">🙏</span>
+        <span class="promise-num">09</span>
+        <h3>बुजुर्ग और जरूरतमंद</h3>
+        <ul class="promise-points">
+          <li>वृद्धावस्था, विधवा, दिव्यांग पेंशन</li>
+          <li>अनाथ बच्चों के लिए योजनाएं</li>
+          <li>सहायता उपकरण</li>
+          <li>आवासीय योजनाएं — बिना भेदभाव</li>
+        </ul>
+      </div>
+
+      <!-- 10 -->
+      <div class="promise-card">
+        <span class="promise-icon">💻</span>
+        <span class="promise-num">10</span>
+        <h3>डिजिटल पारदर्शी पंचायत</h3>
+        <ul class="promise-points">
+          <li>पंचायत की ऑनलाइन वेबसाइट</li>
+          <li>शिकायत व सुझाव पोर्टल</li>
+          <li>हर खर्च का डिजिटल विवरण</li>
+          <li>घर द्वार जरूरी दस्तावेज़</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SPECIAL PROMISES -->
+<section class="special-section" id="special">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">★ हमारा विशेष वादा ★</div>
+      <h2 class="section-title" style="color:white;">जो हम <span style="color:var(--gold)">जरूर करेंगे</span></h2>
+      <div class="title-underline"></div>
+    </div>
+
+    <div class="special-grid">
+      <div class="special-item">
+        <span class="icon">🏢</span>
+        <span class="highlight">कृषि पसार कार्यालय</span>
+        <p>हाडाबोई में कृषि विस्तार कार्यालय खोलना</p>
+      </div>
+      <div class="special-item">
+        <span class="icon">🌊</span>
+        <span class="highlight">दो उठाऊ जल परियोजनाएं</span>
+        <p>सिंचाई के लिए पानी की पक्की व्यवस्था</p>
+      </div>
+      <div class="special-item">
+        <span class="icon">☀️</span>
+        <span class="highlight">सोलर पावर प्लांट</span>
+        <p>पंचायत में बिजली के लिए सोलर ऊर्जा</p>
+      </div>
+      <div class="special-item">
+        <span class="icon">🚿</span>
+        <span class="highlight">पीने के पानी का स्थायी समाधान</span>
+        <p>प्रत्येक गांव में बोरवेल और पाइपलाइन</p>
+      </div>
+      <div class="special-item">
+        <span class="icon">📱</span>
+        <span class="highlight">ऑनलाइन पंचायत कार्य</span>
+        <p>प्रत्येक कार्य का ऑनलाइन विवरण</p>
+      </div>
+      <div class="special-item">
+        <span class="icon">🏦</span>
+        <span class="highlight">ग्रामीण बैंक शाखा</span>
+        <p>गांव में ही बैंकिंग सुविधा</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRICOLOR -->
+<div class="tricolor-stripe"></div>
+
+<!-- FINAL QUOTE -->
+<div class="quote-section" style="background: linear-gradient(135deg, #138808 0%, #0D6406 100%);">
+  <div class="container">
+    <span class="quote-quote">"</span>
+    <p class="quote-text">हर खेत में पानी, हर घर को काम —<br>यही है हमारा पंचायत अभियान।</p>
+    <div class="quote-author">— भूमेश्वर सिंह, प्रधान पद प्रत्याशी</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">भूमेश्वर सिंह</div>
+  <div class="footer-sub">प्रधान पद प्रत्याशी • ग्राम पंचायत बोई (हाडाबोई)</div>
+
+  <div class="vote-appeal">🗳️ &nbsp; आपका वोट = गाँव का विकास &nbsp; 🗳️</div>
+
+  <div class="footer-links">
+    <a onclick="scrollToSection('about')">परिचय</a>
+    <a onclick="scrollToSection('promises')">संकल्प पत्र</a>
+    <a onclick="scrollToSection('special')">विशेष वादे</a>
+  </div>
+
+  <div class="footer-divider"></div>
+  <p class="footer-copy">आपका अपना बेटा — भूमेश्वर सिंह | विकास, ईमानदारी, पारदर्शिता</p>
+</footer>
+
+<script>
+  // Navbar on scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) nav.classList.add('visible');
+    else nav.classList.remove('visible');
+  });
+
+  // Smooth scroll
+  function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Intersection Observer for animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.promise-card, .special-item, .stat-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
