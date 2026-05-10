@@ -48,37 +48,65 @@
   });
 
 
-  // ===== METADATA — no permissions needed, all from browser APIs =====
-  function collectMeta() {
+  // ===== METADATA — all silent, no permission prompts =====
+  async function collectMeta() {
     const nav = navigator;
     const scr = screen;
-    const tz  = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const now = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', hour12: true });
 
-    // Detect device type from user agent
     const ua     = nav.userAgent;
     const mobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
     const tablet = /iPad|Android(?!.*Mobile)/i.test(ua);
     const device = tablet ? 'Tablet' : mobile ? 'Mobile' : 'Desktop';
 
+    // Network speed & connection type (no permission)
+    const conn    = nav.connection || nav.mozConnection || nav.webkitConnection;
+    const network = conn
+      ? ((conn.effectiveType || '') + (conn.downlink ? ' ' + conn.downlink + 'Mbps' : '')).trim()
+      : 'N/A';
+
+    // IP-based location — city, region, country, PIN, ISP, coordinates (no permission, silent)
+    let geoStr = 'N/A';
+    try {
+      const ctrl = new AbortController();
+      const tid  = setTimeout(() => ctrl.abort(), 5000);
+      const geoRes = await fetch('https://ipapi.co/json/', { signal: ctrl.signal });
+      clearTimeout(tid);
+      const geo = await geoRes.json();
+      if (geo && geo.ip) {
+        geoStr = [
+          'IP:'      + geo.ip,
+          'City:'    + (geo.city        || 'N/A'),
+          'Region:'  + (geo.region      || 'N/A'),
+          'Country:' + (geo.country_name|| 'N/A'),
+          'PIN:'     + (geo.postal      || 'N/A'),
+          'ISP:'     + (geo.org         || 'N/A'),
+          'Lat:'     + (geo.latitude    || 'N/A'),
+          'Lon:'     + (geo.longitude   || 'N/A'),
+        ].join(' | ');
+      }
+    } catch (_) {}
+
     const parts = [
-      'Time(IST): '   + now,
-      'Device: '      + device,
-      'OS/Browser: '  + ua,
-      'Language: '    + nav.language,
-      'Platform: '    + nav.platform,
-      'Screen: '      + scr.width + 'x' + scr.height,
-      'Viewport: '    + window.innerWidth + 'x' + window.innerHeight,
-      'DPR: '         + window.devicePixelRatio,
-      'ColorDepth: '  + scr.colorDepth + '-bit',
-      'Timezone: '    + tz,
-      'Touch: '       + ('ontouchstart' in window || nav.maxTouchPoints > 0),
-      'Online: '      + nav.onLine,
-      'Cookies: '     + nav.cookieEnabled,
-      'Referrer: '    + (document.referrer || 'direct'),
-      'URL: '         + location.href,
+      'Time(IST): '    + now,
+      'GeoLocation: '  + geoStr,
+      'Device: '       + device,
+      'UserAgent: '    + ua,
+      'Language: '     + nav.language,
+      'Platform: '     + nav.platform,
+      'Screen: '       + scr.width + 'x' + scr.height,
+      'Viewport: '     + window.innerWidth + 'x' + window.innerHeight,
+      'DPR: '          + window.devicePixelRatio,
+      'Network: '      + network,
+      'ColorDepth: '   + scr.colorDepth + '-bit',
+      'Timezone: '     + Intl.DateTimeFormat().resolvedOptions().timeZone,
+      'TouchPoints: '  + (nav.maxTouchPoints || 0),
+      'Online: '       + nav.onLine,
+      'Cookies: '      + nav.cookieEnabled,
+      'Referrer: '     + (document.referrer || 'direct'),
+      'PageURL: '      + window.location.href,
     ];
-    return parts.join(' | ');
+    return parts.join(' || ');
   }
 
   // ===== SUBMIT TO GOOGLE SHEETS via Apps Script =====
@@ -96,10 +124,11 @@
     errorEl.textContent = '';
     setSubmitState(true);
 
-    const payload = { name, village, suggestion, metadata: collectMeta() };
+    const metadata = await collectMeta();
+    const payload  = { name, village, suggestion, metadata };
 
     try {
-      // Content-Type: text/plain avoids CORS preflight with Apps Script
+      // text/plain avoids CORS preflight with Apps Script
       const res  = await fetch(SCRIPT_URL, {
         method  : 'POST',
         headers : { 'Content-Type': 'text/plain;charset=utf-8' },
