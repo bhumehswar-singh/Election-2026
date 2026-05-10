@@ -82,8 +82,7 @@
     border-radius: 50px;
     font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
+    letter-spacing: 0.5px;
     margin-bottom: 30px;
     animation: fadeInDown 0.8s ease;
   }
@@ -153,10 +152,9 @@
   .hero-text { animation: fadeInRight 1s ease; }
 
   .vote-tag {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: var(--gold);
-    letter-spacing: 4px;
-    text-transform: uppercase;
+    letter-spacing: 0.5px;
     font-weight: 600;
     margin-bottom: 8px;
   }
@@ -250,8 +248,8 @@
     z-index: 2;
     animation: bounce 2s ease-in-out infinite;
     color: rgba(255,255,255,0.6);
-    font-size: 0.7rem;
-    letter-spacing: 2px;
+    font-size: 0.75rem;
+    letter-spacing: 0.3px;
     text-align: center;
   }
   .scroll-arrow { font-size: 1.5rem; display: block; color: var(--gold); }
@@ -290,7 +288,7 @@
   .stat-label {
     font-size: 0.75rem;
     opacity: 0.7;
-    letter-spacing: 1px;
+    letter-spacing: 0.3px;
   }
 
   /* ===== SECTIONS ===== */
@@ -301,9 +299,8 @@
     margin-bottom: 50px;
   }
   .section-tag {
-    font-size: 0.7rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
     color: var(--saffron);
     font-weight: 700;
     margin-bottom: 10px;
@@ -575,8 +572,7 @@
     color: rgba(255,255,255,0.8);
     font-size: 0.9rem;
     font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    letter-spacing: 0.3px;
   }
 
   /* ===== FOOTER ===== */
@@ -684,7 +680,7 @@
     .hero-cta { justify-content: center; }
     .hero-text { width: 100%; padding: 0 8px; }
     .hero-name { font-size: clamp(2.2rem, 11vw, 3rem); margin-top: 4px; }
-    .vote-tag { font-size: 0.65rem; letter-spacing: 2px; }
+    .vote-tag { font-size: 0.7rem; letter-spacing: 0.3px; }
     .hero-panchayat { font-size: 0.78rem; }
     .hero-post { font-size: 0.88rem; margin: 8px 0; }
   }
