@@ -156,8 +156,7 @@
         onReady: function(e) {
           document.getElementById('reelOverlay').style.display = 'none';
           document.getElementById('reelIframeWrap').style.display = 'block';
-          e.target.unMute();
-          e.target.setVolume(100);
+          document.getElementById('unmuteBtn').style.display = 'block';
         }
       }
     });
@@ -170,5 +169,14 @@
       ytPlayer.setVolume(100);
       document.getElementById('reelOverlay').style.display = 'none';
       document.getElementById('reelIframeWrap').style.display = 'block';
+      document.getElementById('unmuteBtn').style.display = 'none';
+    }
+  }
+
+  function unmuteVideo() {
+    if (ytPlayer) {
+      ytPlayer.unMute();
+      ytPlayer.setVolume(100);
+      document.getElementById('unmuteBtn').style.display = 'none';
     }
   }
