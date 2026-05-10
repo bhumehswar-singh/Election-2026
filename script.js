@@ -128,20 +128,47 @@
   // Escape key closes modal
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-  // ===== VIDEO — AUTOPLAY ON PAGE LOAD =====
+  // ===== VIDEO — AUTOPLAY WITH AUDIO via YouTube IFrame API =====
+  // Strategy: start muted (browsers require this for autoplay), then
+  // immediately unmute via the API once the player is ready.
 
-  function playVideoNow() {
-    const overlay    = document.getElementById('reelOverlay');
-    const iframeWrap = document.getElementById('reelIframeWrap');
-    const iframe     = document.getElementById('reelIframe');
-    if (!iframe) return;
-    iframe.src           = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&playsinline=1&rel=0&controls=1`;
-    overlay.style.display    = 'none';
-    iframeWrap.style.display = 'block';
+  var ytPlayer;
+
+  (function loadYTApi() {
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  })();
+
+  function onYouTubeIframeAPIReady() {
+    ytPlayer = new YT.Player('reelIframe', {
+      videoId: VIDEO_ID,
+      width: '100%',
+      height: '100%',
+      playerVars: {
+        autoplay: 1,
+        mute: 1,
+        playsinline: 1,
+        rel: 0,
+        controls: 1
+      },
+      events: {
+        onReady: function(e) {
+          document.getElementById('reelOverlay').style.display = 'none';
+          document.getElementById('reelIframeWrap').style.display = 'block';
+          e.target.unMute();
+          e.target.setVolume(100);
+        }
+      }
+    });
   }
 
-  // Fire as soon as DOM is ready — muted so browser allows autoplay
-  document.addEventListener('DOMContentLoaded', () => {
-    // Small delay so page renders first, then video loads
-    setTimeout(playVideoNow, 800);
-  });
+  function playVideoNow() {
+    if (ytPlayer && ytPlayer.playVideo) {
+      ytPlayer.playVideo();
+      ytPlayer.unMute();
+      ytPlayer.setVolume(100);
+      document.getElementById('reelOverlay').style.display = 'none';
+      document.getElementById('reelIframeWrap').style.display = 'block';
+    }
+  }
