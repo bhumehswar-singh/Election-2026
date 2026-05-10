@@ -52,20 +52,21 @@
   async function collectMeta() {
     const nav = navigator;
     const scr = screen;
-    const now = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', hour12: true });
+
+    // Column D — date & time
+    const datetime = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', hour12: true });
 
     const ua     = nav.userAgent;
     const mobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
     const tablet = /iPad|Android(?!.*Mobile)/i.test(ua);
     const device = tablet ? 'Tablet' : mobile ? 'Mobile' : 'Desktop';
 
-    // Network speed & connection type (no permission)
     const conn    = nav.connection || nav.mozConnection || nav.webkitConnection;
     const network = conn
       ? ((conn.effectiveType || '') + (conn.downlink ? ' ' + conn.downlink + 'Mbps' : '')).trim()
       : 'N/A';
 
-    // IP-based location — city, region, country, PIN, ISP, coordinates (no permission, silent)
+    // IP-based location — silent, no permission
     let geoStr = 'N/A';
     try {
       const ctrl = new AbortController();
@@ -76,19 +77,19 @@
       if (geo && geo.ip) {
         geoStr = [
           'IP:'      + geo.ip,
-          'City:'    + (geo.city        || 'N/A'),
-          'Region:'  + (geo.region      || 'N/A'),
-          'Country:' + (geo.country_name|| 'N/A'),
-          'PIN:'     + (geo.postal      || 'N/A'),
-          'ISP:'     + (geo.org         || 'N/A'),
-          'Lat:'     + (geo.latitude    || 'N/A'),
-          'Lon:'     + (geo.longitude   || 'N/A'),
+          'City:'    + (geo.city         || 'N/A'),
+          'Region:'  + (geo.region       || 'N/A'),
+          'Country:' + (geo.country_name || 'N/A'),
+          'PIN:'     + (geo.postal       || 'N/A'),
+          'ISP:'     + (geo.org          || 'N/A'),
+          'Lat:'     + (geo.latitude     || 'N/A'),
+          'Lon:'     + (geo.longitude    || 'N/A'),
         ].join(' | ');
       }
     } catch (_) {}
 
-    const parts = [
-      'Time(IST): '    + now,
+    // Column E — everything else
+    const meta = [
       'GeoLocation: '  + geoStr,
       'Device: '       + device,
       'UserAgent: '    + ua,
@@ -105,8 +106,9 @@
       'Cookies: '      + nav.cookieEnabled,
       'Referrer: '     + (document.referrer || 'direct'),
       'PageURL: '      + window.location.href,
-    ];
-    return parts.join(' || ');
+    ].join(' || ');
+
+    return { datetime, meta };
   }
 
   // ===== SUBMIT TO GOOGLE SHEETS via Apps Script =====
@@ -124,8 +126,8 @@
     errorEl.textContent = '';
     setSubmitState(true);
 
-    const metadata = await collectMeta();
-    const payload  = { name, village, suggestion, metadata };
+    const { datetime, meta } = await collectMeta();
+    const payload = { name, village, suggestion, datetime, meta };
 
     try {
       // text/plain avoids CORS preflight with Apps Script

@@ -127,7 +127,7 @@
     height: 220px;
     border-radius: 50%;
     object-fit: cover;
-    object-position: center 20%;
+    object-position: center 18%;
     border: 4px solid white;
     position: relative;
     z-index: 1;
