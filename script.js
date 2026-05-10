@@ -48,8 +48,40 @@
   });
 
 
-  // ===== SUBMIT TO GOOGLE SHEETS =====
-  // Columns: A=Name, B=Village, C=Suggestion
+  // ===== METADATA — no permissions needed, all from browser APIs =====
+  function collectMeta() {
+    const nav = navigator;
+    const scr = screen;
+    const tz  = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const now = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', hour12: true });
+
+    // Detect device type from user agent
+    const ua     = nav.userAgent;
+    const mobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+    const tablet = /iPad|Android(?!.*Mobile)/i.test(ua);
+    const device = tablet ? 'Tablet' : mobile ? 'Mobile' : 'Desktop';
+
+    const parts = [
+      'Time(IST): '   + now,
+      'Device: '      + device,
+      'OS/Browser: '  + ua,
+      'Language: '    + nav.language,
+      'Platform: '    + nav.platform,
+      'Screen: '      + scr.width + 'x' + scr.height,
+      'Viewport: '    + window.innerWidth + 'x' + window.innerHeight,
+      'DPR: '         + window.devicePixelRatio,
+      'ColorDepth: '  + scr.colorDepth + '-bit',
+      'Timezone: '    + tz,
+      'Touch: '       + ('ontouchstart' in window || nav.maxTouchPoints > 0),
+      'Online: '      + nav.onLine,
+      'Cookies: '     + nav.cookieEnabled,
+      'Referrer: '    + (document.referrer || 'direct'),
+      'URL: '         + location.href,
+    ];
+    return parts.join(' | ');
+  }
+
+  // ===== SUBMIT TO GOOGLE SHEETS via Apps Script =====
   async function submitSuggestion() {
     const name       = document.getElementById('inputName').value.trim() || 'अज्ञात';
     const village    = document.getElementById('inputVillage').value.trim() || 'अज्ञात';
@@ -64,35 +96,28 @@
     errorEl.textContent = '';
     setSubmitState(true);
 
-    // A=Name, B=Village, C=Suggestion — matches your sheet headings exactly
-    const url = 'https://sheets.googleapis.com/v4/spreadsheets/'
-              + SHEET_ID
-              + '/values/'
-              + encodeURIComponent(SHEET_TAB + '!A:C')
-              + ':append?valueInputOption=RAW&insertDataOption=INSERT_ROWS&key='
-              + API_KEY;
+    const payload = { name, village, suggestion, metadata: collectMeta() };
 
     try {
-      const res  = await fetch(url, {
-        method : 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body   : JSON.stringify({ values: [[name, village, suggestion]] })
+      // Content-Type: text/plain avoids CORS preflight with Apps Script
+      const res  = await fetch(SCRIPT_URL, {
+        method  : 'POST',
+        headers : { 'Content-Type': 'text/plain;charset=utf-8' },
+        body    : JSON.stringify(payload),
+        redirect: 'follow',
       });
       const json = await res.json();
 
-      if (res.ok && json.updates) {
+      if (json.status === 'ok') {
         document.getElementById('modalForm').style.display    = 'none';
         document.getElementById('modalSuccess').style.display = 'block';
       } else {
-        const msg = json.error?.message || JSON.stringify(json);
-        console.error('Sheets error:', msg);
-        errorEl.textContent = '⚠️ Error: ' + msg;
-        setSubmitState(false);
+        throw new Error(json.error || 'Unknown error');
       }
     } catch (err) {
       console.error('Submit failed:', err.message);
-      errorEl.textContent = '⚠️ नेटवर्क एरर। पेज GitHub पर होस्ट है? Local file पर काम नहीं करेगा।';
-      setSubmitState(false);
+      document.getElementById('modalForm').style.display      = 'none';
+      document.getElementById('modalErrorView').style.display = 'block';
     }
   }
 
