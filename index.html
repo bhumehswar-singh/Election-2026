@@ -81,21 +81,25 @@
       <div class="reel-phone">
         <div class="reel-notch"></div>
         <div class="reel-screen">
-          <div class="reel-overlay" id="reelOverlay">
+          <div class="reel-overlay" id="reelOverlay" onclick="playVideoNow()">
             <div class="reel-thumb">
               <img src="https://img.youtube.com/vi/7_vcV5mjCVI/hqdefault.jpg" alt="संकल्प वीडियो" />
             </div>
             <div class="reel-play-wrap">
-              <div class="reel-countdown" id="reelCountdown">▶</div>
-              <p class="reel-hint">लोड हो रहा है...</p>
+              <div class="play-btn-circle">&#9654;</div>
+              <p class="reel-hint">वीडियो चलाएं</p>
             </div>
           </div>
           <div class="reel-iframe-wrap" id="reelIframeWrap" style="display:none;">
-            <div id="reelIframe"></div>
+            <iframe
+              id="reelIframe"
+              src=""
+              title="हमारा संकल्प — बोई पंचायत के नाम"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
           </div>
-          <button id="unmuteBtn" onclick="unmuteVideo()" style="display:none; position:absolute; bottom:18px; left:50%; transform:translateX(-50%); z-index:10; background:rgba(255,107,0,0.95); color:white; border:none; border-radius:50px; padding:11px 26px; cursor:pointer; font-size:0.85rem; font-weight:700; white-space:nowrap; box-shadow:0 4px 20px rgba(0,0,0,0.5); animation:fab-pulse 1.5s ease-in-out infinite; font-family:'Poppins',sans-serif;">
-            🔊 ध्वनि चालू करें
-          </button>
         </div>
         <div class="reel-home-bar"></div>
       </div>
